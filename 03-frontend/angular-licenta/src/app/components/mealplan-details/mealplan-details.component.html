@@ -1,0 +1,23 @@
+<div class="detail-section">
+
+  <div class="container-fluid">
+
+      <img src="{{ mealplan.imageUrl }}" class="detail-img">
+
+      <h3>{{ mealplan.name }}</h3>
+
+      <div class="price">{{ mealplan.price | currency:'USD'}}</div>
+
+      <button (click)="addToCart()" class="btn btn-primary btn-sm">Add to carrt</button>
+
+      <hr>
+
+      <h4>Description</h4>
+
+    <p>{{ mealplan.description }}</p>
+
+    <a routerLink="/mealplans" class="mt-5">Inapoi la Pagina Principala</a>
+
+  </div>
+
+</div>

@@ -1,0 +1,88 @@
+<div class="main-content">
+  <div class="section-content section-content-p30">
+    <div class="container-fluid">
+      <div class="row">
+
+        <!-- loop over the collection of products -->
+
+        <div *ngFor="let tempMealplan of mealplans" class="col-md-3">
+
+            <div class="product-box">
+
+              <a routerLink="/mealplans/{{ tempMealplan.id }}">
+                <img src="{{ tempMealplan.imageUrl }}" class="img-responsive">
+              </a>
+
+              <a routerLink="/mealplans/{{ tempMealplan.name }}">
+                <h1>{{ tempMealplan.name }}</h1>
+              </a>
+
+              <div class="price">{{ tempMealplan.price | currency:'USD' }}</div>
+
+              <button  (click)="addToCart(tempMealplan)" class="btn btn-primary btn-sm">Add to cart</button>
+
+            </div>
+      </div>
+
+        <!-- daca nu gasim nici un produs afisam un mesaj utilizatorului-->
+
+        <div *ngIf="mealplans?.length == 0" class = "alert-warning col-md-12" role="alert">
+          No products found.
+        </div>
+
+    </div>
+
+      <!-- begin footer -->
+      <div class="footer-pagination">
+
+        <div class = "row">
+
+          <div class="col-md-6">
+
+            <div class="col-md-6">
+
+              <div class="row">
+
+                <div class="col-md-9" style="padding-left: 30%">
+
+                  <ngb-pagination [(page)]="thePageNumber"
+                                    [pageSize]="thePageSize"
+                                      [collectionSize]="theTotalElements"
+                                        [maxSize]="5"
+                                        [boundaryLinks]="true"
+                                        (pageChange)="listMealplans()">
+
+                  </ngb-pagination>
+
+                </div>
+
+
+              </div>
+
+              <div class="col-md-3 mt-2" style="text-align: right;">
+                <span class="mr-2">Dimensiune</span>
+
+                <select (change)="updatePageSize($event.target.value)">
+                  <option>1</option>
+                  <option selected="true">5</option>
+                  <option>10</option>
+                  <option>20</option>
+                  <option>50</option>
+                </select>
+              </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- end footer -->
+
+  </div>
+</div>
+
